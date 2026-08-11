@@ -1,5 +1,6 @@
 package controller;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -15,6 +16,7 @@ public class UserController {
     @Inject
     UserService userService;
 
+    @RolesAllowed("user")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -23,6 +25,7 @@ public class UserController {
         return Response.status(Response.Status.CREATED).entity(created).build();
     }
 
+    @RolesAllowed("user")
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -34,6 +37,7 @@ public class UserController {
         return Response.ok(user).build();
     }
 
+    @RolesAllowed("user")
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
